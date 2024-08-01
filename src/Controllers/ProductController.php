@@ -25,9 +25,7 @@ class ProductController
             $width = isset($_POST['width']) ? $_POST['attribute'] : null;
             $length = isset($_POST['length']) ? $_POST['attribute'] : null;
 
-            // Determine product type and set attributes accordingly
-            // Here, for simplicity, we assume Product is concrete
-            $product = new \src\Models\Product(null, $sku, $name, $price, $attribute);
+            $product = new \src\Models\Product(null, $sku, $name, $price, $attribute,$size,$weight,$height,$width,$length);
             $this->productManager->saveProduct($product);
 
             header('Location: ../../../index.php?action=list');

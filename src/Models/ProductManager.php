@@ -12,18 +12,23 @@ class ProductManager
 
     public function saveProduct(Product $product)
     {
-        $stmt = $this->pdo->prepare('INSERT INTO products (sku, name, price, attribute) VALUES (:sku, :name, :price, :attribute)');
+        $stmt = $this->pdo->prepare('INSERT INTO products (sku, name, price, attribute, size, weight, height, width, length) VALUES (:sku, :name, :price, :attribute, :size, :weight, :height, :width, :length)');
         $stmt->execute([
             ':sku' => $product->getSku(),
             ':name' => $product->getName(),
             ':price' => $product->getPrice(),
-            ':attribute' => $product->getAttribute()
+            ':attribute' => $product->getAttribute(),
+            ':size' => $product->getSize(),
+            ':weight' => $product->getWeight(),
+            ':height' => $product->getHeight(),
+            ':width' => $product->getWidth(),
+            ':length' => $product->getLength(),
         ]);
     }
 
     public function getProducts()
     {
-        $stmt = $this->pdo->query('SELECT id, sku, name, price, attribute FROM products ORDER BY id');
+        $stmt = $this->pdo->query('SELECT id, sku, name, price, attribute, size, weight, height, width, length FROM products ORDER BY id');
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 
