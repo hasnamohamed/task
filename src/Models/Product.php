@@ -1,7 +1,7 @@
 <?php
 namespace src\Models;
 
-abstract class Product
+class Product
 {
     protected $id;
     protected $sku;
@@ -13,9 +13,7 @@ abstract class Product
     protected $height;
     protected $width;
     protected $length;
-    public function __construct($id, $sku, $name,
-     $price, $attribute, $size, $weight,
-      $height, $width, $length)
+    public function __construct($id, $sku, $name, $price, $attribute, $size, $weight, $height, $width, $length)
     {
         $this->id = $id;
         $this->sku = $sku;

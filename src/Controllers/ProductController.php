@@ -12,33 +12,38 @@ class ProductController
         $this->productManager = new ProductManager();
     }
 
-    public function addProduct()
+    public function storeProduct()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $sku = isset($_POST['sku']) ? $_POST['sku'] : '';
             $name = isset($_POST['name']) ? $_POST['name'] : '';
             $price = isset($_POST['price']) ? $_POST['price'] : 0;
             $attribute = isset($_POST['attribute']) ? $_POST['attribute'] : '';
-            $size = isset($_POST['size']) ? $_POST['size'] : null;
-            $weight = isset($_POST['weight']) ? $_POST['attribute'] : null;
-            $height = isset($_POST['height']) ? $_POST['attribute'] : null;
-            $width = isset($_POST['width']) ? $_POST['attribute'] : null;
-            $length = isset($_POST['length']) ? $_POST['attribute'] : null;
+            $size = isset($_POST['size']) ? $_POST['size'] : '';
+            $weight = isset($_POST['weight']) && is_numeric($_POST['weight']) ? $_POST['weight'] : null;
+            $height = isset($_POST['height']) && is_numeric($_POST['height']) ? $_POST['height'] : null;
+            $width = isset($_POST['width']) && is_numeric($_POST['width']) ? $_POST['width'] : null;
+            $length = isset($_POST['length']) && is_numeric($_POST['length']) ? $_POST['length'] : null;
 
-            $product = new \src\Models\Product(null, $sku, $name, $price, $attribute,$size,$weight,$height,$width,$length);
+            $product = new \src\Models\Product(null, $sku, $name, $price, $attribute, $size, $weight, $height, $width, $length);
             $this->productManager->saveProduct($product);
 
             header('Location: ../../../index.php?action=list');
             exit;
         }
 
-        require 'src/Views/products/add_product.php';
+        require 'src/Views/products/create.php';
     }
 
     public function listProducts()
     {
         $products = $this->productManager->getProducts();
-        require 'src/Views/products/product_list.php';
+        require 'src/Views/products/index.php';
+    }
+    public function addProduct()
+    {
+        header('Location: src/Views/products/create.php');
+            exit;
     }
 
     public function massDelete()

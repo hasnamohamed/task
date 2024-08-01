@@ -11,6 +11,9 @@ $controller = new ProductController();
 $action = isset($_GET['action']) ? $_GET['action'] : 'list';
 
 switch ($action) {
+    case 'store':
+        $controller->storeProduct();
+        break;
     case 'add':
         $controller->addProduct();
         break;

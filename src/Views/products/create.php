@@ -19,7 +19,7 @@
 <body>
 <div class="container mt-5">
     <h1 class="mb-4">Add Product</h1>
-    <form action="../../../index.php?action=add" method="POST">
+    <form action="../../../index.php?action=store" method="POST">
         <div class="mb-3">
             <label for="sku" class="form-label">SKU:</label>
             <input type="text" id="sku" name="sku" class="form-control" required>
@@ -37,7 +37,7 @@
 
         <div class="mb-3">
             <label for="product-type" class="form-label">Product Type:</label>
-            <select id="product-type" name="product_type" class="form-select" required>
+            <select id="product-type" name="attribute" class="form-select" required>
                 <option value="">Select product type</option>
                 <option value="dvd">DVD-disc</option>
                 <option value="book">Book</option>
