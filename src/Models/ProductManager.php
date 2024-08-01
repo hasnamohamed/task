@@ -13,16 +13,21 @@ class ProductManager
     public function saveProduct(Product $product)
     {
         $stmt = $this->pdo->prepare('INSERT INTO products (sku, name, price, attribute, size, weight, height, width, length) VALUES (:sku, :name, :price, :attribute, :size, :weight, :height, :width, :length)');
+        $size = $product->getSize() !== '' ? $product->getSize() : null;
+        $weight = $product->getWeight() !== '' ? $product->getWeight() : null;
+        $height = $product->getHeight() !== '' ? $product->getHeight() : null;
+        $width = $product->getWidth() !== '' ? $product->getWidth() : null;
+        $length = $product->getLength() !== '' ? $product->getLength() : null;
         $stmt->execute([
             ':sku' => $product->getSku(),
             ':name' => $product->getName(),
             ':price' => $product->getPrice(),
             ':attribute' => $product->getAttribute(),
-            ':size' => $product->getSize(),
-            ':weight' => $product->getWeight(),
-            ':height' => $product->getHeight(),
-            ':width' => $product->getWidth(),
-            ':length' => $product->getLength(),
+            ':size' => $size,
+            ':weight' => $weight,
+            ':height' => $height,
+            ':width' => $width,
+            ':length' => $length,
         ]);
     }
 

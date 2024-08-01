@@ -15,7 +15,7 @@
 <div class="container mt-5">
     <h1 class="mb-4">Product List</h1>
     <a href="/task/index.php?action=add" class="btn btn-primary mb-3">ADD</a>
-    <form action="../../../index.php?action=massDelete" method="POST" id="massDeleteForm">
+    <form action="/task/index.php?action=massDelete" method="POST" id="massDeleteForm">
         <table class="table table-striped">
             <thead>
                 <tr>

@@ -19,7 +19,7 @@ class ProductController
             $name = isset($_POST['name']) ? $_POST['name'] : '';
             $price = isset($_POST['price']) ? $_POST['price'] : 0;
             $attribute = isset($_POST['attribute']) ? $_POST['attribute'] : '';
-            $size = isset($_POST['size']) ? $_POST['size'] : '';
+            $size = isset($_POST['size']) ? $_POST['size'] : null;
             $weight = isset($_POST['weight']) && is_numeric($_POST['weight']) ? $_POST['weight'] : null;
             $height = isset($_POST['height']) && is_numeric($_POST['height']) ? $_POST['height'] : null;
             $width = isset($_POST['width']) && is_numeric($_POST['width']) ? $_POST['width'] : null;
@@ -28,7 +28,7 @@ class ProductController
             $product = new \src\Models\Product(null, $sku, $name, $price, $attribute, $size, $weight, $height, $width, $length);
             $this->productManager->saveProduct($product);
 
-            header('Location: ../../../index.php?action=list');
+            header('Location:/task/index.php?action=list');
             exit;
         }
 
