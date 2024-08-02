@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="/assets/css/styles.css">
     <!-- Include jQuery -->
     <script src="/assets/js/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 </head>
 <body>
 <div class="container mt-5">
@@ -38,7 +40,7 @@
                             <td><input type="checkbox" class="form-check-input" name="ids[]" value="<?php echo htmlspecialchars($product['id']); ?>"></td>
                             <td><?php echo htmlspecialchars($product['sku']); ?></td>
                             <td><?php echo htmlspecialchars($product['name']); ?></td>
-                            <td><?php echo htmlspecialchars($product['price']); ?></td>
+                            <td><?php echo htmlspecialchars($product['price']).'$'; ?></td>
                             <td><?php echo htmlspecialchars($product['attribute']); ?></td>
                             <td><?php echo $product['size']? htmlspecialchars($product['size']):'-'; ?></td>
                             <td><?php echo $product['weight']? htmlspecialchars($product['weight']):'-'; ?></td>
@@ -57,6 +59,7 @@
         <button type="submit" class="btn btn-danger">MASS DELETE</button>
     </form>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
 <script>
     $(document).ready(function() {
@@ -66,6 +69,5 @@
     });
 </script>
 <!-- Include Bootstrap JavaScript -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>

@@ -53,7 +53,7 @@ class ProductController
             if (!empty($ids)) {
                 $this->productManager->deleteProducts($ids);
             }
-            header('Location: ../../../index.php?action=list');
+            header('Location:/task/index.php?action=list');
             exit;
         }
     }

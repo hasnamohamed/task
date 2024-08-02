@@ -18,7 +18,7 @@ switch ($action) {
         $controller->addProduct();
         break;
     case 'massDelete':
-        $controller->addProduct();
+        $controller->massDelete();
         break;
     case 'list':
     default:
