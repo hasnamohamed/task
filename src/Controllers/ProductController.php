@@ -1,4 +1,5 @@
 <?php
+
 namespace src\Controllers;
 
 use src\Models\ProductManager;
@@ -32,7 +33,7 @@ class ProductController
             exit;
         }
 
-        require 'src/Views/products/create.php';
+        require 'src/Views/products/add-product.php';
     }
 
     public function listProducts()
@@ -42,8 +43,8 @@ class ProductController
     }
     public function addProduct()
     {
-        header('Location: src/Views/products/create.php');
-            exit;
+        header('Location: src/Views/products/add-product.php');
+        exit;
     }
 
     public function massDelete()

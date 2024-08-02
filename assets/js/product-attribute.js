@@ -1,19 +1,16 @@
-$(document).ready(function() {
-    $('#product-type').on('change', function() {
+$(document).ready(function () {
+    $('#productType').on('change', function () {
         $('.dynamic-field').hide();
         var selectedType = $(this).val();
         $('#size, #weight, #height, #width, #length').prop('required', false);
 
-        if (selectedType)
+        if (selectedType){
             $('#' + selectedType + '-fields').show();
+            $('.'+ selectedType).prop('required', true);
+            $('#description').text('');
+            $('#description').text('Please provide the '+$(this).find('option:selected').attr('class')+' for this product type '+selectedType);
+        }
 
-        if (selectedType == 'dvd') 
-            $('#size').prop('required', true);
-         else if (selectedType == 'book') 
-            $('#weight').prop('required', true);
-         else if (selectedType == 'furniture') 
-            $('#height, #width, #length').prop('required', true);
-        
     });
-    $('#product-type').trigger('change');
+    $('#productType').trigger('change');
 });
