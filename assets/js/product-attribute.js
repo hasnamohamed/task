@@ -16,38 +16,49 @@ $(document).ready(function () {
 });
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('product-form');
+    const errorMessageElements = {
+        sku: document.getElementById('sku-error'),
+        name: document.getElementById('name-error'),
+        price: document.getElementById('price-error'),
+        attribute: document.getElementById('productType-error')
+    };
 
     form.addEventListener('submit', function(event) {
         let isValid = true;
-        
-        document.querySelectorAll('.text-danger').forEach(el => el.style.display = 'none');
-        
+
+        Object.values(errorMessageElements).forEach(el => el.style.display = 'none');
+
         const skuInput = document.getElementById('sku');
-        if (!skuInput.value) {
-            document.getElementById('sku-error').style.display = 'block';
+        if (!skuInput.value.trim()) {
+            errorMessageElements.sku.textContent = 'SKU is required.';
+            errorMessageElements.sku.style.display = 'block';
             isValid = false;
         }
 
         const nameInput = document.getElementById('name');
-        if (!nameInput.value) {
-            document.getElementById('name-error').style.display = 'block';
+        if (!nameInput.value.trim()) {
+            errorMessageElements.name.textContent = 'Product Name is required.';
+            errorMessageElements.name.style.display = 'block';
             isValid = false;
         }
 
         const priceInput = document.getElementById('price');
-        if (!priceInput.value) {
-            document.getElementById('price-error').style.display = 'block';
+        if (!priceInput.value || parseFloat(priceInput.value) <= 0) {
+            errorMessageElements.price.textContent = 'Price must be a positive number.';
+            errorMessageElements.price.style.display = 'block';
             isValid = false;
         }
 
         const productTypeSelect = document.getElementById('productType');
         if (!productTypeSelect.value) {
-            document.getElementById('productType-error').style.display = 'block';
+            errorMessageElements.attribute.textContent = 'Product Type is required.';
+            errorMessageElements.attribute.style.display = 'block';
             isValid = false;
         }
 
         if (!isValid) {
-            event.preventDefault(); 
+            event.preventDefault();
         }
     });
 });
+

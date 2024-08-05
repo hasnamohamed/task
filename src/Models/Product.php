@@ -1,4 +1,5 @@
 <?php
+
 namespace src\Models;
 
 class Product
@@ -7,24 +8,17 @@ class Product
     protected $sku;
     protected $name;
     protected $price;
-    protected $attribute; // Store product-specific attribute
-    protected $size;
-    protected $weight;
-    protected $height;
-    protected $width;
-    protected $length;
-    public function __construct($id, $sku, $name, $price, $attribute, $size, $weight, $height, $width, $length)
+    protected $attribute;
+    protected $attributes = []; // Use associative array to handle different attributes
+
+    public function __construct($id, $sku, $name, $price, $attribute, $attributes = [])
     {
         $this->id = $id;
         $this->sku = $sku;
         $this->name = $name;
         $this->price = $price;
         $this->attribute = $attribute;
-        $this->size = $size;
-        $this->weight = $weight;
-        $this->height = $height;
-        $this->width = $width;
-        $this->length = $length;
+        $this->attributes = $attributes;
     }
 
     public function getId()
@@ -51,24 +45,9 @@ class Product
     {
         return $this->attribute;
     }
-    public function getSize()
+
+    public function getAttributeValue($key)
     {
-        return $this->size;
-    }
-    public function getWeight()
-    {
-        return $this->weight;
-    }
-    public function getHeight()
-    {
-        return $this->height;
-    }
-    public function getWidth()
-    {
-        return $this->width;
-    }
-    public function getLength()
-    {
-        return $this->length;
+        return $this->attributes[$key] ?? null;
     }
 }

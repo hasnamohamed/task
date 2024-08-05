@@ -10,15 +10,18 @@ class ProductManager
     {
         $this->pdo = new \PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';port=' . DB_PORT, DB_USER, DB_PASS);
     }
-
+    public function getPdo()
+    {
+        return $this->pdo;
+    }
     public function saveProduct(Product $product)
     {
         $stmt = $this->pdo->prepare('INSERT INTO products (sku, name, price, attribute, size, weight, height, width, length) VALUES (:sku, :name, :price, :attribute, :size, :weight, :height, :width, :length)');
-        $size = $product->getSize() !== '' ? $product->getSize() : null;
-        $weight = $product->getWeight() !== '' ? $product->getWeight() : null;
-        $height = $product->getHeight() !== '' ? $product->getHeight() : null;
-        $width = $product->getWidth() !== '' ? $product->getWidth() : null;
-        $length = $product->getLength() !== '' ? $product->getLength() : null;
+        $size = $product->getAttributeValue('size') !== '' ? $product->getAttributeValue('size') : null;
+        $weight = $product->getAttributeValue('weight') !== '' ? $product->getAttributeValue('weight') : null;
+        $height = $product->getAttributeValue('height') !== '' ? $product->getAttributeValue('height') : null;
+        $width = $product->getAttributeValue('width') !== '' ? $product->getAttributeValue('width') : null;
+        $length = $product->getAttributeValue('length') !== '' ? $product->getAttributeValue('length') : null;
         $stmt->execute([
             ':sku' => $product->getSku(),
             ':name' => $product->getName(),

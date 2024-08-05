@@ -1,3 +1,13 @@
+
+<?php
+session_start();
+
+$errors = $_SESSION['errors'] ?? [];
+$formData = $_SESSION['form_data'] ?? [];
+
+unset($_SESSION['errors'], $_SESSION['form_data']);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,18 +28,19 @@
             <div class="mb-3">
                 <label for="sku" class="form-label">SKU:</label>
                 <input type="text" id="sku" name="sku" class="form-control" required>
-                <div id="sku-error" class="text-danger mt-1" style="display: none;">SKU is required.</div>
+                <div id="sku-error" class="text-danger mt-1"><?php echo $errors['sku'] ?? ''; ?></div>
             </div>
             <div class="mb-3">
                 <label for="name" class="form-label">Product Name:</label>
                 <input type="text" id="name" name="name" class="form-control" required>
-                <div id="name-error" class="text-danger mt-1" style="display: none;">Product Name is required.</div>
+                <div id="name-error" class="text-danger mt-1"><?php echo $errors['name'] ?? ''; ?></div>
+
             </div>
 
             <div class="mb-3">
                 <label for="price" class="form-label">Price:</label>
                 <input type="number" id="price" name="price" class="form-control" step="0.01" required>
-                <div id="price-error" class="text-danger mt-1" style="display: none;">Price is required.</div>
+                <div id="price-error" class="text-danger mt-1"><?php echo $errors['price'] ?? ''; ?></div>
             </div>
 
             <div class="mb-3">
@@ -40,7 +51,7 @@
                     <option class="weight" id="Book" value="book">Book</option>
                     <option class="dimensions in HxWxL" id="Furniture" value="furniture">Furniture</option>
                 </select>
-                <div id="productType-error" class="text-danger mt-1" style="display: none;">Product Type is required.</div>
+                <div id="productType-error" class="text-danger mt-1"><?php echo $errors['attribute'] ?? ''; ?></div>
                 <span id="description" ></span>
             </div>
             <div id="dvd-fields" class="dynamic-field mb-3">
